@@ -4,11 +4,13 @@ const app = express();
 const expressSession = require('express-session');
 const flash = require('connect-flash');
 const path = require('path');
-const connectDB = require('./config/db')
+const connectDB = require('./config/db');
+const cookieParser = require("cookie-parser");
 
 connectDB();
 
 app.use(express.static("public"));
+app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(flash());
@@ -33,6 +35,8 @@ const indexRouter = require('./routes/index-router');
 app.use("/",indexRouter);
 const userRouter = require('./routes/user-router');
 app.use("/user",userRouter);
+const blogRouter = require('./routes/blog-router');
+app.use("/blog",blogRouter);
 
 
 const port = process.env.PORT;

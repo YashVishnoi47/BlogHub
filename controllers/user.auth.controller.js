@@ -45,3 +45,36 @@ module.exports.registerUser = async function (req, res) {
     return res.send("Internal Server Error");
   }
 };
+
+module.exports.loginuser = async function (req, res) {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.send("All fields are required"); //Debug
+    }
+
+    const user = await userModel.findOne({ email });
+    if (!user) {
+      return res.send("User don't Exists, Register"); //Debug
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (isMatch) {
+      const token = jwt.sign(
+        { email: user.email, id: user._id },
+        process.env.Sec_Key
+      );
+      res.cookie("token", token);
+      res.send("done");
+      // res.redirect("/profile");
+    } else {
+      return res.send("invalid"); //debug
+      // req.flash("error", "Something went wrong");
+      // return res.redirect("/register");
+    }
+  } catch (error) {
+    return res.send("Internal Sever"); //Debug
+  }
+};
