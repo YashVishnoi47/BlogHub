@@ -31,6 +31,8 @@ app.set('view engine','ejs');
 
 const indexRouter = require('./routes/index-router');
 app.use("/",indexRouter);
+const userRouter = require('./routes/user-router');
+app.use("/user",userRouter);
 
 
 const port = process.env.PORT;
