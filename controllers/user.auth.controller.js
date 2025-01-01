@@ -8,16 +8,16 @@ module.exports.registerUser = async function (req, res) {
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
-      req.flash("logMsg", "All fields are required");
-      return res.send("All f"); //Debug
-      //   return res.redirect("/user/register");
+      req.flash("logmsgErr", "All fields are required");
+      return res.redirect("/user/registerUser");
+      // return res.send("All f"); //Debug
     }
 
     const user = await userModel.findOne({ email });
     if (user) {
-      //   req.flash("logmsg", "User alredy exists");
-      return res.send("User alredy exists"); //Debug
-      //   return res.redirect("/user/register");
+       req.flash("logmsgErr", "User alredy exists");
+       return res.redirect("/user/registerUser");
+      // return res.send("User alredy exists"); //Debug
     }
 
     const saltRoundes = 10;
@@ -37,9 +37,9 @@ module.exports.registerUser = async function (req, res) {
     res.cookie("token", token, {
       httpOnly: true,
     });
-    // req.flash("logmsg", "User Registered");
-    res.send(newUser); //Debug
-    // return res.redirect("/register");
+    req.flash("logmsgSucc", "User Registered");
+    return res.redirect("/user/loginUser");
+    // res.send(newUser); //Debug
   } catch (error) {
     console.log(error);
     return res.send("Internal Server Error");
@@ -51,12 +51,16 @@ module.exports.loginuser = async function (req, res) {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res.send("All fields are required"); //Debug
+      // return res.send("All fields are required"); //Debug
+      req.flash('logmsgErr',"All fields are required");
+      return res.redirect('/user/loginUser');
     }
 
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.send("User don't Exists, Register"); //Debug
+      // return res.send("User don't Exists, Register"); //Debug
+      req.flash('logmsgErr',"Invalid Email or Password");
+      return res.redirect('/user/loginUser');
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -67,14 +71,43 @@ module.exports.loginuser = async function (req, res) {
         process.env.Sec_Key
       );
       res.cookie("token", token);
-      res.send("done");
-      // res.redirect("/profile");
+      // res.send("done");
+      res.redirect("/user/userProfile");
     } else {
-      return res.send("invalid"); //debug
-      // req.flash("error", "Something went wrong");
-      // return res.redirect("/register");
+      // return res.send("invalid"); //debug
+      req.flash('logmsgErr',"Incorrect Password, try again");
+      return res.redirect('/user/loginUser');
     }
   } catch (error) {
     return res.send("Internal Sever"); //Debug
   }
 };
+
+
+module.exports.logoutuser = async function (req, res) {
+  try {
+    // Destroy the session
+    req.session.destroy((err) => {
+      if (err) {
+        console.log(err);
+        req.flash("error", "An error occurred while logging out");
+        return res.redirect("/userProfile");
+      }
+
+      // Clear the session cookie (this is important if you're using cookies to store session data)
+      res.clearCookie("connect.sid"); // Assuming you're using default cookie name for session
+
+      // Flash success message after logout
+      req.flash("success", "Successfully logged out!");
+
+      // Redirect the user to the login page after successful logout
+      res.redirect("/user/loginUser");
+    });
+  } catch (error) {
+    console.log(error);
+    req.flash("error", "Something went wrong");
+    res.redirect("/userProfile");
+  }
+};
+
+

@@ -13,7 +13,7 @@ app.use(express.static("public"));
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-app.use(flash());
+
 app.use(expressSession({
     resave:false,
     saveUninitialized:false,
@@ -23,6 +23,8 @@ app.use(expressSession({
         maxAge: 1000 * 60 * 60 * 24,
     }
 }));
+
+app.use(flash());
 
 
 app.set("views",path.join(__dirname,"views"));

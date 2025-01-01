@@ -13,7 +13,11 @@ const userSchema = mongoose.Schema({
     },
     bio:{
         type:String
-    }
+    },
+    blogs:[{
+        type:mongoose.Schema.ObjectId,
+        ref:"post"
+    }],
 });
 
 module.exports = mongoose.model("user",userSchema);
