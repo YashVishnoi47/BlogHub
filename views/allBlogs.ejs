@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs</title>
+    <link rel="stylesheet" href="/css/output.css">
+</head>
+
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <header class="bg-white shadow">
+        <nav class="bg-gray-800 text-white shadow-lg">
+            <div class="container mx-auto flex items-center justify-between p-4">
+                <!-- Left: Logo -->
+                <div class="text-2xl font-bold hover:text-gray-300 transition duration-300">
+                    <a href="/">A BLOG</a>
+                </div>
+
+                <!-- Right: Navigation Links -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="/" class="px-4 py-2 hover:text-gray-300 transition duration-300">Home</a>
+                    <a href="/user/userProfile"
+                        class="px-4 py-2 hover:text-gray-300 transition duration-300">Profile</a>
+                    <a href="/blog/createPost" type="submit"
+                        class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition duration-300">
+                        Add Blog
+                    </a>
+                    <a href="/user/logoutUser"
+                        class="text-left px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition duration-300">
+                        Logout
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden flex items-center text-gray-300 hover:text-white" id="menu-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="hidden md:hidden bg-gray-700 text-gray-300 space-y-2 p-4" id="mobile-menu">
+                <a href="/" class="block px-4 py-2 hover:text-gray-100 transition duration-300">Home</a>
+                <a href="/userProfile" class="block px-4 py-2 hover:text-gray-100 transition duration-300">Profile</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Blog List -->
+        <div class="lg:col-span-2 space-y-6">
+            <h2 class="text-3xl font-semibold text-gray-800">All Blogs</h2>
+            <!-- Blog Card -->
+            <% blogs.forEach(blog=> { %>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-xl font-semibold text-gray-900">
+                        <%= blog.title %>
+                    </h3>
+                    <p class="text-gray-700 mt-2 line-clamp-3">
+                        <%= blog.content %>
+                    </p>
+                    <div class="mt-4 flex justify-between items-center">
+                        <span class="text-sm text-gray-500">By <%= blog.BloggerName.email %> | <%=
+                                    blog.date.toDateString() %></span>
+                        <a href="/blog/aBlog/<%= blog._id %>" class="text-blue-600 hover:underline">Read More</a>
+                    </div>
+                </div>
+                <% }); %>
+
+                    <!-- Add more blog cards dynamically -->
+        </div>
+
+        <!-- Sidebar -->
+        <!-- <aside class="bg-white rounded-lg shadow-md p-6">
+      <h2 class="text-xl font-semibold text-gray-800">User Info</h2>
+      <p class="text-gray-600 mt-4"><strong>Name:</strong> John Doe</p>
+      <p class="text-gray-600 mt-2"><strong>Email:</strong> john.doe@example.com</p>
+      <p class="text-gray-600 mt-2"><strong>Member Since:</strong> January 2023</p>
+      <div class="mt-4">
+        <a href="/profile" class="text-blue-600 hover:underline">Edit Profile</a>
+      </div>
+    </aside> -->
+    </div>
+
+
+
+
+    <!-- Footer -->
+    <!-- <footer class="bg-gray-800 bottom-0 fixed  w-full text-white py-6">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2025 BlogHub. All rights reserved.</p>
+    </div>
+  </footer> -->
+
+</body>
+
+</html>

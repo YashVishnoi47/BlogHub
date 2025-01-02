@@ -2,65 +2,136 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/output.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/output.css" />
 </head>
 
-<body class="select-none">
+<body class="h-screen w-full flex flex-col gap-12">
 
-    <div class="min-h-screen flex flex-col items-center ">
-        <!-- Profile Card -->
-        <div class="bg-white shadow-lg rounded-lg p-6 mt-8 w-full max-w-3xl relative">
-            <div class="flex items-center">
+  <div>
+    <% if (success.length> 0) { %>
+      <div
+        class="bg-green-600 flash10 border mt-4 absolute top-20 right-0 border-green-400 text-black font-medium px-4 py-3 rounded mb-4">
+        <p class="flash10">
+          <%= success %>
+        </p>
+      </div>
+      <% } %>
+        <% if (error.length> 0) { %>
+          <div
+            class="bg-green-600 flash10 border mt-4 absolute top-20 right-0 border-green-400 text-black font-medium px-4 py-3 rounded mb-4">
+            <p class="flash10">
+              <%= error %>
+            </p>
+          </div>
+          <% } %>
+
+  </div>
+
+          <!-- Navbar -->
+          <nav class="bg-gray-800 text-white shadow-lg">
+            <div class="container mx-auto flex items-center justify-between p-4">
+              <!-- Left: Logo -->
+              <div class="text-2xl font-bold hover:text-gray-300 transition duration-300">
+                <a href="/">A BLOG</a>
+              </div>
+
+              <!-- Right: Navigation Links -->
+              <div class="hidden md:flex items-center space-x-4">
+                <a href="/" class="px-4 py-2 hover:text-gray-300 transition duration-300">Home</a>
+                <a href="/user/userProfile" class="px-4 py-2 hover:text-gray-300 transition duration-300">Profile</a>
+                <a href="/blog/createPost" type="submit"
+                  class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition duration-300">
+                  Add Blog
+                </a>
+                <a href="/user/logoutUser"
+                  class="text-left px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition duration-300">
+                  Logout
+                </a>
+              </div>
+
+              <!-- Mobile Menu Button -->
+              <button class="md:hidden flex items-center text-gray-300 hover:text-white" id="menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+              </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="hidden md:hidden bg-gray-700 text-gray-300 space-y-2 p-4" id="mobile-menu">
+              <a href="/" class="block px-4 py-2 hover:text-gray-100 transition duration-300">Home</a>
+              <a href="/userProfile" class="block px-4 py-2 hover:text-gray-100 transition duration-300">Profile</a>
+            </div>
+          </nav>
+
+          <div class="min-h-screen flex flex-col items-center">
+            <!-- Profile Card -->
+            <div class="bg-white shadow-lg rounded-lg p-6 mt-8 w-full max-w-3xl relative">
+              <div class="flex items-center">
                 <!-- Profile Picture -->
                 <img src="/images/profile-icon.jpg" alt="Profile Picture"
-                    class="w-20 overflow-hidden h-20 rounded-full object-cover border-2 border-blue-500">
+                  class="w-20 overflow-hidden h-20 rounded-full object-cover border-2 border-blue-500" />
                 <div class="ml-4">
-                    <!-- User Info -->
-                    <h2 class="text-2xl capitalize font-bold text-gray-800">
-                        <%= user.name %>
-                    </h2>
-                    <p class="text-gray-600">
-                        <%= user.email %>
-                    </p>
+                  <!-- User Info -->
+                  <h2 class="text-2xl capitalize font-bold text-gray-800">
+                    <%= user.name %>
+                  </h2>
+                  <p class="text-gray-600">
+                    <%= user.email %>
+                  </p>
                 </div>
-
-                <div class="btns absolute right-12 flex gap-2 ">
-                    <a class="border-2 border-black flex justify-center items-center p-1" href="/user/logoutUser">logout</a>
-                    <a class="border-2 border-black flex justify-center items-center p-1" href="">Add blog</a>
-                </div>
+              </div>
             </div>
-        </div>
 
+            <!-- Blogs Section -->
+            <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-3xl">
+              <h1 class="text-xl font-bold text-gray-800 mb-8 border-b p-1">
+                Your Blogs
+              </h1>
+              <% if (blogs.length> 0) { %>
+                <ul class="space-y-4 flex flex-col gap-2">
+                  <% blogs.forEach(blog=> { %>
+                    <li class="w-full flex justify-between items-center">
+                      <h4 class="text-xl font-bold text-gray-800">
+                        <%= blog.title %>
+                      </h4>
 
-        <!-- Blogs Section -->
-        <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-3xl">
-            <h3 class="text-xl font-bold text-gray-800 mb-4">Your Blogs</h3>
-            <% if (blogs.length> 0) { %>
-                <ul class="space-y-4">
-                    <% blogs.forEach(blog=> { %>
-                        <li class="border-b pb-4">
-                            <h4 class="text-xl font-bold text-gray-800">
-                                <%= blog.title %>
-                            </h4>
-                            <p class="text-gray-600 text-sm mt-1">
-                                <%= blog.blogText %>
-                            </p>
-                            <!-- <a href="/blogs/<%= blog._id %>" class="text-blue-500 text-sm mt-2 inline-block">Read More</a> -->
-                        </li>
-                        <% }) %>
+                      <!-- Edit And Delete -->
+                      <div class="flex gap-4">
+                        <!-- Delete -->
+                        <form action="/blog/delete/<%= blog._id %>" method="POST">
+                          <button type="submit"
+                            class="bg-transparent rounded-full text-black w-10 h-10 flex justify-center items-center hover:bg-gray-100 transition-colors duration-300">
+                            <img class="h-5" src="/images/delete.svg" alt="" />
+                          </button>
+                        </form>
+                        <!-- Edit -->
+
+                        <a href="/blog/editBlog/<%= blog._id %>" type="submit"
+                          class="bg-transparent rounded-full text-black w-10 h-10 flex justify-center items-center hover:bg-gray-100 transition-colors duration-300">
+                          <img class="h-5" src="/images/edit.svg" alt="" />
+                        </a>
+                      </div>
+                    </li>
+                    <li class="border-b pb-4">
+                      <p class="text-gray-600 text-sm mt-1">
+                        <%= blog.blogText %>
+                          <a href="/blog/aBlog/<%= blog._id %>" class="text-blue-600 hover:underline">Read More</a>
+                      </p>
+                    </li>
+                    <% }) %>
                 </ul>
                 <% } else { %>
-                    <p class="text-gray-600">You haven't created any blogs yet.</p>
-                    <% } %>
-        </div>
+                  <p class="text-gray-600">You haven't created any blogs yet.</p>
+                  <% } %>
+            </div>
+          </div>
 
-
-    </div>
-
-    </div>
+          <script src="../public/js/logic.js"></script>
 </body>
 
 </html>

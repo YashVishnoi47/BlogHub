@@ -83,31 +83,10 @@ module.exports.loginuser = async function (req, res) {
   }
 };
 
-
-module.exports.logoutuser = async function (req, res) {
-  try {
-    // Destroy the session
-    req.session.destroy((err) => {
-      if (err) {
-        console.log(err);
-        req.flash("error", "An error occurred while logging out");
-        return res.redirect("/userProfile");
-      }
-
-      // Clear the session cookie (this is important if you're using cookies to store session data)
-      res.clearCookie("connect.sid"); // Assuming you're using default cookie name for session
-
-      // Flash success message after logout
-      req.flash("success", "Successfully logged out!");
-
-      // Redirect the user to the login page after successful logout
-      res.redirect("/user/loginUser");
-    });
-  } catch (error) {
-    console.log(error);
-    req.flash("error", "Something went wrong");
-    res.redirect("/userProfile");
-  }
+module.exports.logoutUser = function (req, res) {
+  res.cookie("token", "");
+  res.redirect("/");
 };
+
 
 

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Blog</title>
+    <link rel="stylesheet" href="/css/output.css" />
+  </head>
+
+  <body class="flex flex-col bg-gray-300 w-full min-h-screen overflow-hidden">
+    <% if (success.length> 0) { %>
+    <div
+      class="bg-green-600 border mt-4 absolute top-20 right-0 border-green-400 text-black font-medium px-4 py-3 rounded mb-4"
+    >
+      <p><%= success %></p>
+    </div>
+    <% } %> <% if (error.length> 0) { %>
+    <div
+      class="bg-green-600 border mt-4 absolute top-20 right-0 border-green-400 text-black font-medium px-4 py-3 rounded mb-4"
+    >
+      <p><%= error %></p>
+    </div>
+    <% } %>
+
+    <!-- Navbar -->
+    <nav class="bg-gray-800 w-full text-white shadow-lg">
+      <div class="container mx-auto flex items-center justify-between p-4">
+        <!-- Left: Logo -->
+        <div
+          class="text-2xl font-bold hover:text-gray-300 transition duration-300"
+        >
+          <a href="/">A BLOG</a>
+        </div>
+
+        <!-- Right: Navigation Links -->
+        <div class="hidden md:flex items-center space-x-4">
+          <a
+            href="/"
+            class="px-4 py-2 hover:text-gray-300 transition duration-300"
+            >Home</a
+          >
+          <a
+            href="/user/userProfile"
+            class="px-4 py-2 hover:text-gray-300 transition duration-300"
+            >Profile</a
+          >
+          <a
+            href="/blog/createPost"
+            type="submit"
+            class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition duration-300"
+          >
+            Add Blog
+          </a>
+          <!-- <form action="/user/logoutUser" class="inline-block"> -->
+          <a
+            href="/user/logoutUser"
+            type="submit"
+            class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition duration-300"
+          >
+            Logout
+          </a>
+          <!-- </form> -->
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button
+          class="md:hidden flex items-center text-gray-300 hover:text-white"
+          id="menu-button"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        class="hidden md:hidden bg-gray-700 text-gray-300 space-y-2 p-4"
+        id="mobile-menu"
+      >
+        <a
+          href="/"
+          class="block px-4 py-2 hover:text-gray-100 transition duration-300"
+          >Home</a
+        >
+        <a
+          href="/userProfile"
+          class="block px-4 py-2 hover:text-gray-100 transition duration-300"
+          >Profile</a
+        >
+        <form action="/logout" method="POST" class="block">
+          <button
+            type="submit"
+            class="w-full text-left px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition duration-300"
+          >
+            Logout
+          </button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="w-full h-screen flex justify-center items-center">
+      <div class="bg-white border-2 shadow-2xl rounded-lg p-6 w-full max-w-lg">
+        <h2 class="text-2xl font-bold text-gray-700 text-center mb-4">
+          Edit Blog
+        </h2>
+
+        <form
+          action="/blog/editBlog/<%= blog._id %>"
+          method="POST"
+          class="space-y-4"
+        >
+          <!-- Title -->
+          <div>
+            <label for="title" class="block text-gray-600 font-medium mb-1"
+              >Blog Title</label
+            >
+            <input
+              type="text"
+              value="<%= blog.title %>"
+              name="title"
+              id="title"
+              placeholder="Enter the blog title"
+              class="w-full px-4 mt-2 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              required
+            />
+          </div>
+
+          <!-- Main Blog Text -->
+          <div>
+            <label for="content" class="block text-gray-600 font-medium mb-1"
+              >Blog Content</label
+            >
+            <textarea
+              name="blogText"
+              id="content"
+              placeholder="Write your blog here..."
+              class="w-full h-36 px-4 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              required
+            >
+<%= blog.blogText %></textarea
+            >
+          </div>
+
+          <!-- Submit Button -->
+          <div>
+            <button
+              type="submit"
+              class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300"
+            >
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
