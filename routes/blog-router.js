@@ -41,7 +41,7 @@ router.get("/aBlog/:id", async function (req, res) {
     const blogId = req.params.id;
     // const user = req.user._id;
 
-    const blog = await blogModel.findById(blogId);
+    const blog = await blogModel.findById(blogId).populate("BloggerName");
     if (!blog) {
       req.flash("error", "Blog not found");
       res.redirect("/blogs");
@@ -50,6 +50,7 @@ router.get("/aBlog/:id", async function (req, res) {
     res.render("aBlog", { blog });
   } catch (error) {
     res.send("internal Server Error");
+    console.log(error)
   }
 });
 

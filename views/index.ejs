@@ -2,31 +2,63 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog</title>
-    <link rel="stylesheet" href="/css/output.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog</title>
+  <link rel="stylesheet" href="/css/output.css">
 </head>
 
-<body class="w-full h-screen">
-    <!-- Navbar -->
-    <nav class="bg-gray-800 text-white h-[10%] shadow-lg">
-        <div class="container mx-auto flex items-center justify-between p-4">
-          <!-- Left: Logo -->
-          <div class="text-2xl font-bold hover:text-gray-300 transition duration-300">
-            <a href="/">A BLOG</a>
-          </div>
-      
-          <!-- Right: Buttons -->
-          <div class="hidden md:flex items-center space-x-4">
-            <a href="user/loginUser" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300">
-              Log In
-            </a>
-            <a href="user/registerUser" class="px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white transition duration-300">
-              Sign Up
-            </a>
-          </div>
-      </nav>
+<body class="w-full h-screen bg-gray-100">
+  <!-- Navbar -->
+  <nav class="bg-gray-800 text-white h-[10%] shadow-lg">
+    <div class="container mx-auto flex items-center justify-between p-4">
+      <!-- Left: Logo -->
+      <div class="text-2xl font-bold hover:text-gray-300 transition duration-300">
+        <a href="/">A BLOG</a>
+      </div>
+
+      <!-- Right: Buttons -->
+      <div class="hidden md:flex items-center space-x-4">
+        <a href="user/loginUser"
+          class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300">
+          Log In
+        </a>
+        <a href="user/registerUser"
+          class="px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-600 hover:text-white transition duration-300">
+          Sign Up
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="h-[90%] flex flex-col md:flex-row items-center justify-center bg-gradient-to-r from-blue-50 to-gray-100">
+    <!-- Left: Welcome Message -->
+    <div class="text-center md:text-left max-w-lg p-6">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+        Welcome to <span class="text-blue-600">BlogHub</span>
+      </h1>
+      <p class="text-lg text-gray-600 mb-6">
+        "A place to explore, share, and grow. Dive into stories, ideas, and thoughts that spark inspiration."
+      </p>
+      <div class="flex gap-4">
+        <a href="/user/loginUser"
+          class="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300 shadow-lg">
+          Log in
+        </a>
+        <a href="/user/registerUser"
+          class="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300 shadow-lg">
+          Sign up
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Right: Decorative Image -->
+    <div class="w-80 md:w-96">
+      <img  src="/images/blogs.jpg" alt="Hero Image" class="rounded-lg shadow-lg ">
+    </div>
+  </section>
 </body>
 
 </html>

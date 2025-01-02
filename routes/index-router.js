@@ -9,7 +9,7 @@ router.get("/", function (req, res) {
 
 router.get("/blogs", isloggedin, async function (req, res) {
   try {
-    const blogs = await blogModel.find().sort({ createdAt: -1 }); // Fetch all blogs, sorted by latest
+    const blogs = await blogModel.find().sort({ createdAt: -1 }).populate("BloggerName") // Fetch all blogs, sorted by latest
     res.render("allBlogs", { blogs }); // Pass blogs to the template
   } catch (error) {
     console.error(error);

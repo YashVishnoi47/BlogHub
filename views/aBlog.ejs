@@ -1,12 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/output.css">
 </head>
+
 <body>
-    <%= blog.title %>
-    <%= blog.blogText %>
+    <!-- Navbar -->
+    <nav class="bg-gray-800 text-white shadow-lg">
+        <div class="container mx-auto flex items-center justify-between p-4">
+            <!-- Left: Logo -->
+            <div class="text-2xl font-bold hover:text-gray-300 transition duration-300">
+                <a href="/">BlogHub</a>
+            </div>
+
+            <!-- Right: Navigation Links -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="/blogs" class="px-4 py-2 hover:text-gray-300 transition duration-300">Home</a>
+                <a href="/user/userProfile" class="px-4 py-2 hover:text-gray-300 transition duration-300">Profile</a>
+                <a href="/blog/createPost" type="submit"
+                    class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition duration-300">
+                    Add Blog
+                </a>
+                <a href="/user/logoutUser"
+                    class="text-left px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition duration-300">
+                    Logout
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden flex items-center text-gray-300 hover:text-white" id="menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-gray-700 text-gray-300 space-y-2 p-4" id="mobile-menu">
+            <a href="/blog" class="block px-4 py-2 hover:text-gray-100 transition duration-300">Home</a>
+            <a href="/userProfile" class="block px-4 py-2 hover:text-gray-100 transition duration-300">Profile</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <!-- Blog Header -->
+            <div class="bg-gray-200 p-6">
+                <h2 class="text-3xl font-bold text-gray-800">
+                    <%= blog.title %>
+                </h2>
+                <div class="mt-2 text-sm text-gray-600">
+                    By <span class="font-semibold text-blue-600">
+                        <%= blog.BloggerName.name %>
+                    </span> | Published on <%= blog.date.toDateString() %>
+                </div>
+            </div>
+
+            <!-- Blog Content -->
+            <div class="p-6">
+                <p class="text-gray-700 leading-relaxed whitespace-pre-line">
+                    <%= blog.blogText %>
+                </p>
+            </div>
+
+            <!-- Footer Section -->
+            <div class="bg-gray-50 p-6">
+                <div class="flex justify-between items-center">
+                    <div class="text-sm text-gray-500">
+                    </div>
+                    <a href="/blogs" class="text-blue-600 hover:underline">Back to Blogs</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
 </body>
+
 </html>
