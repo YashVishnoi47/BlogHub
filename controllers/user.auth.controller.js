@@ -90,3 +90,33 @@ module.exports.logoutUser = function (req, res) {
 
 
 
+
+module.exports.editUser = async function (req, res) {
+  try {
+    const { email, name } = req.body;
+    const userId = req.params.id;
+
+    if (!name || !email) {
+      req.flash('error',"All fields are required");
+      return res.redirect('/user/userProfile');
+    }
+
+    const user = await userModel.findById(userId);
+    if (!user) {
+      req.flash('error',"User not found");
+      return res.redirect('/user/userProfile');
+    }
+
+    user.name = name;
+    user.email = email;
+    await user.save();
+
+    req.flash("success","Done")
+    res.redirect("/user/userProfile")
+  } catch (error) {
+    return res.send("Internal Sever"); //Debug
+  }
+};
+
+
+

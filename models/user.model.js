@@ -20,6 +20,10 @@ const userSchema = mongoose.Schema({
       ref: "post",
     },
   ],
+  profilePic: {
+    type: String, // Store the path to the profile picture
+    default: "uploads/profile-icon.jpg", // Default image path if no profile picture is uploaded
+  },
 });
 
 module.exports = mongoose.model("user", userSchema);

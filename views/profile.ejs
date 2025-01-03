@@ -10,23 +10,23 @@
 
 <body class="h-screen w-full flex flex-col gap-12">
 
- 
-    <% if (success.length> 0) { %>
-      <div
-        class="bg-green-600 flash10 border mt-4 absolute top-20 right-0 border-green-400 text-black font-medium px-4 py-3 rounded mb-4">
-        <p class="flash10">
-          <%= success %>
-        </p>
-      </div>
-      <% } %>
-        <% if (error.length> 0) { %>
-          <div
-            class="bg-green-600 flash10 border mt-4 absolute top-20 right-0 border-green-400 text-black font-medium px-4 py-3 rounded mb-4">
-            <p class="flash10">
-              <%= error %>
-            </p>
-          </div>
-          <% } %>
+
+  <% if (success.length> 0) { %>
+    <div
+      class="bg-green-600 flash10 border mt-4 absolute top-20 right-0 border-green-400 text-black font-medium px-4 py-3 rounded mb-4">
+      <p class="flash10">
+        <%= success %>
+      </p>
+    </div>
+    <% } %>
+      <% if (error.length> 0) { %>
+        <div
+          class="bg-green-600 flash10 border mt-4 absolute top-20 right-0 border-green-400 text-black font-medium px-4 py-3 rounded mb-4">
+          <p class="flash10">
+            <%= error %>
+          </p>
+        </div>
+        <% } %>
 
 
 
@@ -35,7 +35,7 @@
             <div class="container mx-auto flex items-center justify-between p-4">
               <!-- Left: Logo -->
               <div class="text-2xl font-bold hover:text-gray-300 transition duration-300">
-                <a href="/">A BLOG</a>
+                <a href="/blogs">BlogHub</a>
               </div>
 
               <!-- Right: Navigation Links -->
@@ -73,9 +73,21 @@
             <div class="bg-white shadow-lg rounded-lg p-6 mt-8 w-full max-w-3xl relative">
               <div class="flex items-center">
                 <!-- Profile Picture -->
-                <img src="/images/profile-icon.jpg" alt="Profile Picture"
-                  class="w-20 overflow-hidden h-20 rounded-full object-cover border-2 border-blue-500" />
-                <div class="ml-4">
+                <div class="profile-Image flex w-full items-center">
+                  <img id="customButton" src="<%= user.profilePic %>" alt="Profile Picture"
+                    class="w-20 overflow-hidden h-20 rounded-full object-cover border-2 border-blue-500" />
+
+                  <form action="/uploads" method="POST" enctype="multipart/form-data">
+                    <input hidden id="fileInput" type="file" name="file" id="">
+                    <button
+                      class="ml-12 border-2 px-2 flex justify-center items-center py-1 border-black hover:bg-slate-200"
+                      type="submit">Upload </button>
+                  </form>
+                  <a class="ml-12 border-2 px-2 flex justify-center items-center py-1 border-black hover:bg-slate-200"
+                    href="/user/edituser/<%= user._id %>">Edit Profile</a>
+                </div>
+                <!-- User Info -->
+                <div class="ml-4 flex flex-col">
                   <!-- User Info -->
                   <h2 class="text-2xl capitalize font-bold text-gray-800">
                     <%= user.name %>
@@ -84,6 +96,9 @@
                     <%= user.email %>
                   </p>
                 </div>
+
+
+
               </div>
             </div>
 
@@ -131,7 +146,17 @@
             </div>
           </div>
 
-          <script src="../public/js/logic.js"></script>
+          <script src="/js/logic.js"></script>
+
+
+
+          <script>
+
+          </script>
+
+
+
+<script src="/js/logic.js"></script>
 </body>
 
 </html>

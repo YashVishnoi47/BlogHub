@@ -10,6 +10,7 @@ const cookieParser = require("cookie-parser");
 connectDB();
 
 app.use(express.static("public"));
+app.use('/uploads', express.static('uploads'));
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());

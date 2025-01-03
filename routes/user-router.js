@@ -3,7 +3,8 @@ const router = express.Router();
 const {
   registerUser,
   loginuser,
-  logoutUser
+  logoutUser,
+  editUser
 } = require("../controllers/user.auth.controller");
 const isloggedin = require("../middlewares/isloggedin");
 const userModel = require("../models/user.model");
@@ -48,5 +49,24 @@ router.get("/userProfile", isloggedin, async function (req, res) {
     res.send("Internal Server Error");
   }
 });
+
+
+router.post("/edituser/:id",isloggedin,editUser);
+
+
+router.get("/edituser/:id",isloggedin,async function(req,res){
+  const userId = req.params.id;
+  const user = await userModel.findById(userId);
+  // console.log(user);
+  const error = req.flash("error")
+
+  res.render("editProfile",{user,error});
+});
+
+
+
+
+
+
 
 module.exports = router;
