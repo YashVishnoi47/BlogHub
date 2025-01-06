@@ -5,10 +5,13 @@ A full-stack web application built using Node.js that allows users to create, ma
 ## Table of Contents
 
 1. [Features](#features)
+
 2. [Tech Stack](#tech-stack)
+
 3. [Run Locally](#run-locally)
    - [Prerequisites](#prerequisites)
    - [Installation](#installation)
+   
 4. [Contact](#-contact)
 
 ---
