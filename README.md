@@ -8,7 +8,7 @@ A full-stack web application built using Node.js that allows users to create, ma
 - **Create & Edit Blogs**: Users can create and manage their blogs with a rich text editor for formatting and customization.
 - **Responsive Design**: The application is fully responsive, providing an optimal user experience on all devices.
 
----
+
 
 ## Tech Stack
 
