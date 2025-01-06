@@ -2,17 +2,6 @@
 
 A full-stack web application built using Node.js that allows users to create, manage, and explore blogs. This platform is designed for seamless user interaction, providing a space to share thoughts, ideas, and stories with others.
 
-## Table of Contents
-
-1. [Features](#features)
-2. [Tech Stack](#tech-stack)
-3. [Run Locally](#run-locally)
-   - [Prerequisites](#prerequisites)
-   - [Installation](#installation)
-4. [Contact](#-contact)
-
----
-
 ## Features
 
 - **User Authentication**: Secure login and registration system to ensure personalized experiences.
