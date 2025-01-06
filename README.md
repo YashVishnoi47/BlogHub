@@ -1,13 +1,17 @@
-
 # BLOGHUB
 
 A full-stack web application built using Node.js that allows users to create, manage, and explore blogs. This platform is designed for seamless user interaction, providing a space to share thoughts, ideas, and stories with others.
 
+## Table of Contents
 
-# BLOGHUB
+1. [Features](#features)
+2. [Tech Stack](#tech-stack)
+3. [Run Locally](#run-locally)
+   - [Prerequisites](#prerequisites)
+   - [Installation](#installation)
+4. [Contact](#-contact)
 
-A full-stack web application built using Node.js that allows users to create, manage, and explore blogs. This platform is designed for seamless user interaction, providing a space to share thoughts, ideas, and stories with others.
-
+---
 
 ## Features
 
@@ -15,16 +19,15 @@ A full-stack web application built using Node.js that allows users to create, ma
 - **Create & Edit Blogs**: Users can create and manage their blogs with a rich text editor for formatting and customization.
 - **Responsive Design**: The application is fully responsive, providing an optimal user experience on all devices.
 
-
+---
 
 ## Tech Stack
 
-**Backend:** Node.js with Express.js for efficient server-side logic.
-
-**Frontend:** EJS for templating and Tailwind for styling.
-
+**Backend:** Node.js with Express.js for efficient server-side logic.  
+**Frontend:** EJS for templating and Tailwind for styling.  
 **Database:** MongoDB for robust and scalable data storage.
 
+---
 
 ## Run Locally
 
@@ -33,11 +36,8 @@ A full-stack web application built using Node.js that allows users to create, ma
 #### Make sure you have the following installed:
 
 - Node.js (v14.x or above)
-
 - npm or yarn
-
 - MongoDB (local or cloud-based)
-
 ### Installation
 
 ```bash
